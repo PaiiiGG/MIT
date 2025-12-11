@@ -1,34 +1,39 @@
 // src/components/Header.js
-import React from 'react';
-import { 
-  FaSearch, 
-  FaBell, 
-  FaUserCircle, 
-  FaCog, 
-  FaChartLine, 
-  FaBars 
-} from 'react-icons/fa';
+import React, { useState } from "react";
+import {
+  FaSearch,
+  FaBell,
+  FaUserCircle,
+  FaCog,
+  FaChartLine,
+  FaBars,
+} from "react-icons/fa";
 
 const Header = () => {
+  const [toggle, setToggle] = useState(false);
+
+  const updateToggle = () => {
+    setToggle(!toggle);
+  };
+
   return (
     // Navbar Container:
     // - bg-white: พื้นหลังสีขาว
     // - rounded-full: ขอบโค้งมนเต็มที่
     // - shadow-xl: เงาชัดเจน
     // - p-4 md:p-6: Padding ปรับตามขนาดหน้าจอ
-    <nav className="bg-white rounded-full shadow-xl p-4 md:p-6 mb-8">
-      
+    <nav className="bg-white rounded-full shadow-xl p-6  mb-8">
       {/* Flex Container หลัก: จัดเรียงองค์ประกอบทั้งหมดในแนวนอน */}
-      <div className="flex justify-between items-center w-full">
-        
+      <div className="flex justify-between items-center w-full relative mx-auto">
         {/* 1. ส่วนซ้าย: Search Bar และข้อความทักทาย */}
-        <div className="flex items-center space-x-6">
-          
+        <div className="flex items-center space-x-6 ">
           {/* Search Bar (เปลี่ยนการแสดงผลตามหน้าจอ) */}
-          <div className="relative flex items-center bg-white border border-gray-300 rounded-full py-2 px-4 
-                        w-40 sm:w-64 md:w-80 lg:w-96 transition-all duration-300">
+          <div
+            className="relative flex items-center bg-white border border-gray-300 rounded-full py-2 px-4 
+                        w-40 sm:w-64 md:w-80 lg:w-96 transition-all duration-300"
+          >
             <FaSearch className="text-gray-400 mr-3 h-4 w-4" />
-            
+
             {/* ซ่อน Text Input บนมือถือเล็ก ๆ และแสดงบนจอใหญ่ */}
             <input
               type="text"
@@ -40,43 +45,42 @@ const Header = () => {
           </div>
 
           {/* ข้อความทักทาย: ซ่อนบนมือถือเล็ก ๆ */}
-          <span className="hidden md:block text-gray-700 font-medium whitespace-nowrap">
+          {/* <span className="hidden md:block text-gray-700 font-medium whitespace-nowrap">
             Good Morning User!
-          </span>
-          
+          </span> */}
         </div>
+        <ul
+          className={`${
+            !toggle ? "hidden" : "flex top-2"
+          } flex-col space-y-3 md:space-y-0  
+                     md:flex md:flex-row md:space-x-6 
+                     absolute md:static top-full right-0 
+                     bg-white md:bg-transparent 
+                     p-4 md:p-0 
+                     shadow-lg md:shadow-none 
+                     rounded-lg 
+                     z-20`}
+        >
+          <li className="">
+            <a href="#"></a>
+            <FaBell size={25} color="#A2A3A4" />
+          </li>
+          <li className="">
+            <a href="#"></a>
+            <FaUserCircle size={25} color="#A2A3A4" />
+          </li>
+          <li className="">
+            <a href="#"></a>
+            <FaCog size={25} color="#A2A3A4" />
+          </li>
+        </ul>
 
-        {/* 2. ส่วนขวา: Menu Links และ Icons */}
-        <div className="flex items-center space-x-4 md:space-x-6">
-          
-          {/* Link: Trends (แสดงบนหน้าจอขนาดกลางขึ้นไป) */}
-          <div className="hidden md:flex items-center text-teal-500 font-medium cursor-pointer">
-            <FaChartLine className="h-5 w-5 mr-2 p-1 border border-teal-500 rounded-lg bg-teal-50" />
-            Trends
-          </div>
-          
-          {/* Link: Profile (แสดงบนหน้าจอขนาดกลางขึ้นไป) */}
-          <span className="hidden md:block text-gray-700 font-medium cursor-pointer">
-            Profile
-          </span>
-          
-          {/* Icon: Menu Hamburger (แสดงเฉพาะบนมือถือ) */}
-          <FaBars className="md:hidden text-gray-500 h-5 w-5 cursor-pointer" />
-          
-          {/* Icon: Notifications */}
-          <div className="relative cursor-pointer">
-            <FaBell className="text-gray-500 h-6 w-6" />
-            {/* Notification Dot */}
-            <span className="absolute top-0 right-0 block h-2 w-2 rounded-full ring-2 ring-white bg-red-500"></span>
-          </div>
-          
-          {/* Icon: User/Profile */}
-          <FaUserCircle className="text-gray-500 h-6 w-6 cursor-pointer" />
-          
-          {/* Icon: Settings */}
-          <FaCog className="text-gray-500 h-6 w-6 cursor-pointer" />
-          
-        </div>
+        <FaBars
+          onClick={updateToggle}
+          size={25}
+          color="#A2A3A4"
+          className="cursor-pointer md:hidden"
+        />
       </div>
     </nav>
   );

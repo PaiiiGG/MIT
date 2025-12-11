@@ -3,7 +3,6 @@ import reactLogo from "./assets/react.svg";
 import viteLogo from "/vite.svg";
 import "./App.css";
 
-import Navbar from "./component/navbar";
 import Sidebar from "./component/Sidebar";
 import VitalsSection from "./component/VitalsSection";
 import InsightSection from "./component/InsightSection";
