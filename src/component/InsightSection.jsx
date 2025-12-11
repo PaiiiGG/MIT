@@ -1,12 +1,18 @@
-// src/components/InsightSection.js
+// src/component/InsightSection.jsx
 import React from "react";
 
 const InsightSection = () => {
   const insights = [
-    { title: "7-Day Average", value: "99", unit: "mg/dL", color: "blue" },
-    { title: "High Readings", value: "2", unit: "> 140 mg/dL", color: "red" },
-    { title: "Low Readings", value: "2", unit: "< 70 mg/dL", color: "red" },
+    { title: "7-Day Average", value: "99", unit: "mg/dL", color: "#000000" }, 
+    { title: "High Readings", value: "2", unit: "> 140 mg/dL", color: "#B35151" },
+    { title: "Low Readings", value: "2", unit: "< 70 mg/dL", color: "#B35151" },
   ];
+
+  const colorMap = (hexColor) => {
+    if (hexColor === '#B35151') return { color: '#B35151' };
+    if (hexColor === '#000000') return { color: '#000000' };
+    return { color: '#1f2937' }; 
+  };
 
   return (
     <div className="bg-white p-6 rounded-2xl shadow-xl border border-gray-100">
@@ -14,36 +20,37 @@ const InsightSection = () => {
         Glucose Insight
       </h3>
 
-      {/* Grid Layout สำหรับ Responsive
-          - sm:grid-cols-3: บนหน้าจอขนาดเล็ก (sm) ขึ้นไป ให้เป็น 3 คอลัมน์
-          - gap-4: ระยะห่างระหว่างกล่อง
-      */}
+      {/* Grid Layout: สร้าง Card ย่อยๆ 3 ใบแยกกัน */}
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
         {insights.map((insight, index) => (
           <div
             key={index}
-            // ใช้ border-r เพื่อสร้างเส้นแบ่งยกเว้นกล่องสุดท้ายบน Desktop
-            className={`p-4 border border-gray-100 rounded-xl 
-                        ${
-                          index < insights.length - 1
-                            ? "sm:border-r border-b sm:border-b-0"
-                            : "border-b sm:border-b-0"
-                        }`}
+            // ปรับสไตล์ Card ย่อย: ใช้พื้นหลังขาว, ขอบโค้งมน, มีเงาเล็กๆ เหมือนในรูป
+            className="p-4 bg-white border border-gray-200 rounded-xl shadow-sm transition-shadow hover:shadow-md h-full flex flex-col justify-between"
           >
-            {/* ค่าหลัก */}
-            <div
-              className={`text-4xl font-extrabold text-${insight.color}-600`}
-            >
-              {insight.value}
-            </div>
-
-            {/* หน่วย */}
-            <p className="text-sm text-gray-500 mt-1">{insight.unit}</p>
-
-            {/* ชื่อข้อมูล */}
-            <p className="text-sm font-medium text-gray-800 mt-2">
+            
+            {/* 1. ชื่อข้อมูล (ขึ้นบนสุด) */}
+            <p className="text-sm font-medium text-gray-800 order-3 sm:order-1 mb-2">
               {insight.title}
             </p>
+
+            {/* 2. ค่าหลัก + หน่วย (อยู่ด้านล่าง) */}
+            <div className="order-1 sm:order-2">
+              {/* ค่าหลัก (ใหญ่): แก้จาก font-extrabold เป็น font-bold */}
+              <div
+                className="text-4xl font-bold" 
+                // ใช้ Inline Style ในการใส่โค้ดสี Hex
+                style={colorMap(insight.color)}
+              >
+                {insight.value}
+              </div>
+
+              {/* หน่วย (เล็ก) */}
+              <p className="text-sm text-gray-500 mt-1">
+                {insight.unit}
+              </p>
+            </div>
+            
           </div>
         ))}
       </div>
