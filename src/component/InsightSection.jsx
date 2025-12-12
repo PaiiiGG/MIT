@@ -25,18 +25,18 @@ const InsightSection = () => {
         {insights.map((insight, index) => (
           <div
             key={index}
-            // ปรับสไตล์ Card ย่อย: ใช้พื้นหลังขาว, ขอบโค้งมน, มีเงาเล็กๆ เหมือนในรูป
+            
             className="p-4 bg-white border border-gray-200 rounded-xl shadow-sm transition-shadow hover:shadow-md h-full flex flex-col justify-between"
           >
             
-            {/* 1. ชื่อข้อมูล (ขึ้นบนสุด) */}
+            {/* 1. ชื่อข้อมูล*/}
             <p className="text-sm font-medium text-gray-800 order-3 sm:order-1 mb-2">
               {insight.title}
             </p>
 
-            {/* 2. ค่าหลัก + หน่วย (อยู่ด้านล่าง) */}
+            {/* 2. ค่าหลัก + หน่วย*/}
             <div className="order-1 sm:order-2">
-              {/* ค่าหลัก (ใหญ่): แก้จาก font-extrabold เป็น font-bold */}
+              {/* ค่าหลัก (ใหญ่)*/}
               <div
                 className="text-4xl font-bold" 
                 // ใช้ Inline Style ในการใส่โค้ดสี Hex
@@ -45,7 +45,7 @@ const InsightSection = () => {
                 {insight.value}
               </div>
 
-              {/* หน่วย (เล็ก) */}
+              {/* หน่วย */}
               <p className="text-sm text-gray-500 mt-1">
                 {insight.unit}
               </p>

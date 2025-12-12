@@ -44,7 +44,7 @@ const TrendsSection = () => {
           {/* 4. จุดข้อมูลสำคัญ (Oct 17) */}
           <div className="absolute left-[30%] top-[40%] text-center">
             <div className="text-xs bg-white border border-gray-300 rounded-lg p-1 shadow-md">
-              Oct 17 <br /> Glucose Level: 118
+              Oct 18 <br /> Glucose Level: 118
             </div>
           </div>
         </div>

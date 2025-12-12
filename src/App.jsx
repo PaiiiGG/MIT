@@ -18,10 +18,10 @@ function App() {
       <div className="flex flex-col lg:flex-row mt-6 lg:space-x-8">
         <div className="w-full lg:w-2/3 space-y-6">
           <h1 className="text-2xl font-semibold text-gray-800">
-            Good Morning User!
+            Good Morning!
           </h1>
           <p className="text-gray-500 text-sm">
-            Patient ID: XX-XXXX | Type 2 Diabetes
+            Patient ID: XX-XXXX | Type 1 Diabetes
           </p>
 
           <VitalsSection />
